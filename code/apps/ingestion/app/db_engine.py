@@ -1,6 +1,6 @@
 import psycopg2
 import pandas as pd
-from sql_queries import create_table_queries, drop_table_queries, fill_table_queries
+from sql_queries import create_table_queries, drop_table_queries, fill_table_queries, create_constraints
 
 
 def create_connection(params):
@@ -10,6 +10,7 @@ def create_connection(params):
     :param params: connection string   
     """
     conn = None
+
     try:
         print('Connecting to the PostgreSQL database')
         conn = psycopg2.connect(**params)
@@ -21,10 +22,10 @@ def create_connection(params):
         cur.execute('SELECT version()')
 
         db_version = cur.fetchone()
-        print(db_version)
-    
+        print(db_version)              
         return cur, conn
     except (Exception, psycopg2.DatabaseError) as error:
+
         print(error)
 
 
@@ -61,11 +62,11 @@ def drop_tables(cur, conn):
     :param cur: cursor
     :param conn: connection object
     """
-
-    for query in drop_table_queries:
-        print(f"Executing: {query}")
+    print("Dropping tables")
+    for query in drop_table_queries:        
         cur.execute(query)
         conn.commit()
+    print("Tables dropped")
 
 
 def create_tables(cur, conn):
@@ -74,6 +75,7 @@ def create_tables(cur, conn):
     :param cur: cursor
     :param conn: connection object
     """
+    print("Creating created")
     for query in create_table_queries:
         cur.execute(query)
         conn.commit()
@@ -130,8 +132,29 @@ def check_data(cur, conn, tables):
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error: %s" % error)
             raise
-        
+
     return count_values
+
+def set_staging(cur, conn, staging_file, columns):
+
+    print("Copying data from .csv to staging zone")
+
+    try:
+        copy_cmd = f"copy staging({','.join(columns)}) from stdout (format csv)"
+        with open(staging_file, 'r') as f:
+            next(f)
+            cur.copy_expert(copy_cmd, f)        
+        conn.commit()
+        print("Staging ready")
+    except (psycopg2.Error) as e:
+        print(e)
+
+def set_constraints(cur, conn):
+    print("Setting constraints")
+    for query in create_constraints:
+        cur.execute(query)
+        conn.commit()
+    print("Constraints ready")
         
 
 
