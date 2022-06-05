@@ -11,7 +11,3 @@ RUN pip install -r requirements.txt
 COPY ./app ./app
 
 RUN chmod +x /usr/wait-for-it.sh
-
-#RUN python -u ./app/main.py
-
-# CMD ["python", "./app/main.py"]
