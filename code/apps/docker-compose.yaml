@@ -1,0 +1,41 @@
+version: '3.1'
+
+services:
+  db:
+      container_name: pg_container
+      image: postgres
+      restart: always
+      environment:
+          POSTGRES_USER: "postgres"
+          POSTGRES_PASSWORD: "pg12345"
+          POSTGRES_DB: "db"
+          POSTGRES_HOST_AUTH_METHOD: trust
+      ports:
+          - "5432:5432"
+      networks:
+        - postgres        
+
+  ingestion:
+      build: ./ingestion/
+      container_name: ingestion
+      networks:
+        - postgres
+      depends_on:
+        - db
+      command: bash -c "/usr/wait-for-it.sh --timeout=0 db:5432 && python -u ./app/main.py"
+      volumes:
+      - ./ingestion/app/data:/ingestion/app/data/:z
+
+  api:
+      build: ./api/
+      container_name: api
+      ports:
+          - "8080:8080"
+      networks:
+        - postgres
+      depends_on:
+        - ingestion        
+
+networks:
+  postgres:
+    driver: bridge
