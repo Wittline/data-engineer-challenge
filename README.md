@@ -2,6 +2,9 @@
 
 This goal of this repository is based on solving a technical challenge for the data engineering position.
 
+Check the article here:  <a href="https://coraspe-ramses.medium.com/design-development-and-deployment-of-a-simple-data-pipeline-6f1d59d0fd6a/">Design, Development and Deployment of a simple Data Pipeline</a>
+
+
 ![image](https://user-images.githubusercontent.com/8701464/172062180-c90e7f11-ae64-4fd2-9772-8cfd2fb6abf6.png)
 
 
