@@ -1,5 +1,8 @@
-# data-engineer-challenge
-Challenge Data Engineer
+# Data Engineer Challenge
+
+This goal of this repository is based on solving a technical challenge for the data engineering position.
+
+![image](https://user-images.githubusercontent.com/8701464/172062180-c90e7f11-ae64-4fd2-9772-8cfd2fb6abf6.png)
 
 
 - Install Docker Desktop on Windows, it will install Docker Compose as well, Docker Compose will allow you to run multiple container applications.
@@ -33,8 +36,22 @@ $ docker-compose up
 ```
 
 - After wait for a couple of minutes the final result of executing the above command should look like this:
+
+![image](https://user-images.githubusercontent.com/8701464/172062212-05193fba-d980-4917-9fe1-f1134d72afb8.png)
+
+
 - docker-compose executionlet's check the API REST, go to your browser and search for: http://localhost:8080/docs#/default
+
+![image](https://user-images.githubusercontent.com/8701464/172062217-9fbd6026-6a49-42fc-bbbb-9efb58743cc9.png)
+
 
 - let's try the request to the API REST
 
+![image](https://user-images.githubusercontent.com/8701464/172062224-b9ec90bd-8454-4e5a-a4f5-2adc932a41a2.png)
+
+
 - let's check the response from the API REST
+
+![image](https://user-images.githubusercontent.com/8701464/172062241-8fc66570-9ca8-4ff9-b56e-239fb6eee118.png)
+
+
