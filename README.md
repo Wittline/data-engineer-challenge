@@ -57,4 +57,14 @@ $ docker-compose up
 
 ![image](https://user-images.githubusercontent.com/8701464/172062241-8fc66570-9ca8-4ff9-b56e-239fb6eee118.png)
 
+# Contributing and Feedback
+Any ideas or feedback about this repository?. Help me to improve it.
+
+# Authors
+- Created by <a href="https://twitter.com/RamsesCoraspe"><strong>Ramses Alexander Coraspe Valdez</strong></a>
+- Created on 2022
+
+# License
+This project is licensed under the terms of the Apache License.
+
 
